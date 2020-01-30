@@ -12,10 +12,7 @@ Status:
 package com.negm; /*remove me when compiling using cmd
                     if compiling in IDE replace with your own domain*/
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Random;
-import java.util.Scanner;
+import java.util.*;
 
 public class Main {
 
@@ -42,6 +39,8 @@ public class Main {
                         "hA", "h1", "h2", "h3", "h4", "h5", "h6", "h7", "h8", "h9", "hJ", "hQ", "hK",
                         "sA", "s1", "s2", "s3", "s4", "s5", "s6", "s7", "s8", "s9", "sJ", "sQ", "sK"));
 
+        Stack<String> deckStack = new Stack<String>();
+
 
         ArrayList<String> pileC = new ArrayList<String>();
         ArrayList<String> pileD = new ArrayList<String>();
@@ -53,10 +52,10 @@ public class Main {
         Random rd = new Random();
 
         //These For loops generates random columns so it can be printed later
-        ArrayList<String> column1 = new ArrayList<String>();
+        Stack<String> column1 = new Stack<>();
         for (int index = 0; index < size.getcol1(); index++) {
             int indexTemp = rd.nextInt(deck.size());
-            column1.add(deck.get(indexTemp));
+            column1.push(deck.get(indexTemp));
             deck.remove(indexTemp);
             indexTemp--;
         }
@@ -122,21 +121,23 @@ public class Main {
 
         PointValue v = new PointValue();
         //System.out.println(v.retVal("cA"));
+        OrederdStack n = new OrederdStack();
+        n.shuffleDeck();
         do {
             System.out.println(column9.size());
             System.out.println("Pile   C : " + pileC);
             System.out.println("Pile   D : " + pileD);
             System.out.println("Pile   H : " + pileH);
             System.out.println("Pile   S : " + pileS);
-            System.out.println("Column 1 : " + column1);
-            System.out.println("Column 2 : " + column2);
-            System.out.println("Column 3 : " + column3);
-            System.out.println("Column 4 : " + column4);
-            System.out.println("Column 5 : " + column5);
-            System.out.println("Column 6 : " + column6);
-            System.out.println("Column 7 : " + column7);
-            System.out.println("Column 8 : " + column8);
-            System.out.println("Column 9 : " + column9);
+            System.out.println("Column 1 : " + n.column1);
+            System.out.println("Column 2 : " + n.column2);
+            System.out.println("Column 3 : " + n.column3);
+            System.out.println("Column 4 : " + n.column4);
+            System.out.println("Column 5 : " + n.column5);
+            System.out.println("Column 6 : " + n.column6);
+            System.out.println("Column 7 : " + n.column7);
+            System.out.println("Column 8 : " + n.column8);
+            System.out.println("Column 9 : " + n.column9);
 
 
             System.out.print("Command->> ");
@@ -149,7 +150,10 @@ public class Main {
 
             //if condition to remove the element selected by the user from the original array
             if (colFrom.equals("1")) {
-                column1.remove(cardName);
+                if (column1.indexOf(cardName) == column1.lastIndexOf(column1))
+                    System.out.println("error");
+                else 
+                column1.pop();
             } else if (colFrom.equals("2")) {
                 column2.remove(cardName);
             } else if (colFrom.equals("3")) {
