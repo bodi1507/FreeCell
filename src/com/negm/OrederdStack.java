@@ -1,5 +1,6 @@
 package com.negm;
 
+import javax.swing.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Random;
@@ -11,7 +12,13 @@ public class OrederdStack {
                     "dA", "d1", "d2", "d3", "d4", "d5", "d6", "d7", "d8", "d9", "dJ", "dQ", "dK",
                     "hA", "h1", "h2", "h3", "h4", "h5", "h6", "h7", "h8", "h9", "hJ", "hQ", "hK",
                     "sA", "s1", "s2", "s3", "s4", "s5", "s6", "s7", "s8", "s9", "sJ", "sQ", "sK"));
-    public Stack<String> column1 = new Stack<>();
+
+
+    public Stack<String> pileC = new Stack<String>();
+    public Stack<String> pileD = new Stack<String>();
+    public Stack<String> pileH = new Stack<String>();
+    public Stack<String> pileS = new Stack<String>();
+    public Stack<String> column1 = new Stack<String>();
     public Stack<String> column2 = new Stack<String>();
     public Stack<String> column3 = new Stack<String>();
     public Stack<String> column4 = new Stack<String>();
@@ -22,9 +29,21 @@ public class OrederdStack {
     public Stack<String> column9 = new Stack<String>();
     public GenerateColSize size = new GenerateColSize();
     public Random rd = new Random();
-    public OrederdStack(){}
+
+    public OrederdStack() {
+    }
+
     public OrederdStack(ArrayList<String> deck) {
         this.deck = deck;
+    }
+
+    public void pushC(String cardName) {
+        if (column1.peek() == cardName) {
+            pileC.push(cardName);
+            column1.pop();
+        }
+        else
+        System.out.println("error");
     }
 
     public void shuffleDeck() {

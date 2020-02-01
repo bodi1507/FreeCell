@@ -48,75 +48,6 @@ public class Main {
         ArrayList<String> pileS = new ArrayList<String>();
 
 
-        GenerateColSize size = new GenerateColSize();
-        Random rd = new Random();
-
-        //These For loops generates random columns so it can be printed later
-        Stack<String> column1 = new Stack<>();
-        for (int index = 0; index < size.getcol1(); index++) {
-            int indexTemp = rd.nextInt(deck.size());
-            column1.push(deck.get(indexTemp));
-            deck.remove(indexTemp);
-            indexTemp--;
-        }
-
-        ArrayList<String> column2 = new ArrayList<String>();
-        for (int index = 0; index < size.getcol2(); index++) {
-            int indexTemp = rd.nextInt(deck.size());
-            column2.add(deck.get(indexTemp));
-            deck.remove(indexTemp);
-            indexTemp--;
-        }
-
-        ArrayList<String> column3 = new ArrayList<String>();
-        for (int index = 0; index < size.getcol3(); index++) {
-            int indexTemp = rd.nextInt(deck.size());
-            column3.add(deck.get(indexTemp));
-            deck.remove(indexTemp);
-            indexTemp--;
-        }
-
-        ArrayList<String> column4 = new ArrayList<String>();
-        for (int index = 0; index < size.getcol4(); index++) {
-            int indexTemp = rd.nextInt(deck.size());
-            column4.add(deck.get(indexTemp));
-            deck.remove(indexTemp);
-            indexTemp--;
-        }
-
-        ArrayList<String> column5 = new ArrayList<String>();
-        for (int index = 0; index < size.getcol5(); index++) {
-            int indexTemp = rd.nextInt(deck.size());
-            column5.add(deck.get(indexTemp));
-            deck.remove(indexTemp);
-            indexTemp--;
-        }
-
-        ArrayList<String> column6 = new ArrayList<String>();
-        for (int index = 0; index < size.getcol6(); index++) {
-            int indexTemp = rd.nextInt(deck.size());
-            column6.add(deck.get(indexTemp));
-            deck.remove(indexTemp);
-            indexTemp--;
-        }
-
-        ArrayList<String> column7 = new ArrayList<String>();
-        for (int index = 0; index < size.getcol7(); index++) {
-            int indexTemp = rd.nextInt(deck.size());
-            column7.add(deck.get(indexTemp));
-            deck.remove(indexTemp);
-            indexTemp--;
-        }
-
-        ArrayList<String> column8 = new ArrayList<String>();
-        for (int index = 0; index < size.getcol8(); index++) {
-            int indexTemp = rd.nextInt(deck.size());
-            column8.add(deck.get(indexTemp));
-            deck.remove(indexTemp);
-            indexTemp--;
-        }
-        //column9 is just an extra column no data need to be inserted in it
-        ArrayList<String> column9 = new ArrayList<String>(Arrays.asList("a"));
 
 
         PointValue v = new PointValue();
@@ -124,7 +55,7 @@ public class Main {
         OrederdStack n = new OrederdStack();
         n.shuffleDeck();
         do {
-            System.out.println(column9.size());
+
             System.out.println("Pile   C : " + pileC);
             System.out.println("Pile   D : " + pileD);
             System.out.println("Pile   H : " + pileH);
@@ -142,64 +73,15 @@ public class Main {
 
             System.out.print("Command->> ");
             Scanner input = new Scanner(System.in);
-            colFrom = input.next();
+            //colFrom = input.next();
             cardName = input.next();
-            colTo = input.next();
+            //colTo = input.next();
+            n.pushC(cardName);
+           
 
             // Need to put these if conditions in a class
 
             //if condition to remove the element selected by the user from the original array
-            if (colFrom.equals("1")) {
-                if (column1.indexOf(cardName) == column1.lastIndexOf(column1))
-                    System.out.println("error");
-                else 
-                column1.pop();
-            } else if (colFrom.equals("2")) {
-                column2.remove(cardName);
-            } else if (colFrom.equals("3")) {
-                column3.remove(cardName);
-            } else if (colFrom.equals("4")) {
-                column4.remove(cardName);
-            } else if (colFrom.equals("5")) {
-                column5.remove(cardName);
-            } else if (colFrom.equals("6")) {
-                column6.remove(cardName);
-            } else if (colFrom.equals("7")) {
-                column7.remove(cardName);
-            } else if (colFrom.equals("8")) {
-                column8.remove(cardName);
-            } else if (colFrom.equals("9")) {
-                column9.remove(cardName);
-            }
-
-            //if condition to add the element selected by the user to a selected array
-            if (colTo == "1") {
-                column1.add(cardName);
-            } else if (colTo.equals("2")) {
-                column2.add(cardName);
-            } else if (colTo.equals("3")) {
-                column3.add(cardName);
-            } else if (colTo.equals("4")) {
-                column4.add(cardName);
-            } else if (colTo.equals("5")) {
-                column5.add(cardName);
-            } else if (colTo.equals("6")) {
-                column6.add(cardName);
-            } else if (colTo.equals("7")) {
-                column7.add(cardName);
-            } else if (colTo.equals("8")) {
-                column8.add(cardName);
-            } else if (colTo.equals("9")) {
-                column9.add(cardName);
-            } else if (colTo.equals("c")) {
-                pileC.add(cardName);
-            } else if (colTo.equals("d")) {
-                pileD.add(cardName);
-            } else if (colTo.equals("h")) {
-                pileH.add(cardName);
-            } else if (colTo.equals("s")) {
-                pileS.add(cardName);
-            }
             cls();
         } while (!cardName.equals("x"));
 
