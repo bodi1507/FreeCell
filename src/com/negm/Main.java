@@ -73,10 +73,10 @@ public class Main {
 
             System.out.print("Command->> ");
             Scanner input = new Scanner(System.in);
-            //colFrom = input.next();
+            colFrom = input.next();
             cardName = input.next();
-            //colTo = input.next();
-            n.pushC(cardName);
+            colTo = input.next();
+            n.moveTo(colFrom,cardName,colTo);
            
 
             // Need to put these if conditions in a class
