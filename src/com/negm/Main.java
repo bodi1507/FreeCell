@@ -69,6 +69,7 @@ public class Main {
             System.out.println("Column 8 : " + n.column8);
             System.out.println("Column 9 : " + n.column9);
 
+            System.out.println(n.getTopCard("c"));
 
             System.out.print("Command->> ");
             Scanner input = new Scanner(System.in);

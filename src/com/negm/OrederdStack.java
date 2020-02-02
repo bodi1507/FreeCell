@@ -32,7 +32,6 @@ public class OrederdStack {
     public OrederdStack(ArrayList<String> deck) {
         this.deck = deck;
     }
-
     public void pushC(String cardName) {
         if (column1.peek() == cardName) {
             pileC.push(cardName);
@@ -42,17 +41,22 @@ public class OrederdStack {
 
     }
     public void move(){}
-    public void getTopCard(int columnNum){
+    public String getTopCard(String columnNum){
         switch (columnNum){
-            case 1: column1.peek();
-            case 2: column2.peek();
-            case 3: column3.peek();
-            case 4: column4.peek();
-            case 5: column5.peek();
-            case 6: column6.peek();
-            case 7: column7.peek();
-            case 8: column8.peek();
-            case 9: column9.peek();
+            case "1": return column1.peek();
+            case "2": return column2.peek();
+            case "3": return column3.peek();
+            case "4": return column4.peek();
+            case "5": return column5.peek();
+            case "6": return column6.peek();
+            case "7": return column7.peek();
+            case "8": return column8.peek();
+            case "c": pileC.peek();
+            case "d": pileD.peek();
+            case "h": pileH.peek();
+            case "s": pileS.peek();
+            default:
+                return "error";
         }
     }
     public int getCardValue(String n) {
