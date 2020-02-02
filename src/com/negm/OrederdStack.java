@@ -1,10 +1,6 @@
 package com.negm;
 
-import javax.swing.*;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Random;
-import java.util.Stack;
+import java.util.*;
 
 public class OrederdStack {
     public ArrayList<String> deck = new ArrayList<String>(
@@ -41,10 +37,81 @@ public class OrederdStack {
         if (column1.peek() == cardName) {
             pileC.push(cardName);
             column1.pop();
-        }
-        else
-        System.out.println("error");
+        } else
+            System.out.println("error");
+
     }
+    public void move(){}
+    public void getTopCard(int columnNum){
+        switch (columnNum){
+            case 1: column1.peek();
+            case 2: column2.peek();
+            case 3: column3.peek();
+            case 4: column4.peek();
+            case 5: column5.peek();
+            case 6: column6.peek();
+            case 7: column7.peek();
+            case 8: column8.peek();
+            case 9: column9.peek();
+        }
+    }
+    public int getCardValue(String n) {
+        Map<String, Integer> carValue = new HashMap<>();
+        carValue.put("cA", 0);
+        carValue.put("c1", 1);
+        carValue.put("c2", 2);
+        carValue.put("c3", 3);
+        carValue.put("c4", 4);
+        carValue.put("c5", 5);
+        carValue.put("c6", 6);
+        carValue.put("c7", 7);
+        carValue.put("c8", 8);
+        carValue.put("c9", 9);
+        carValue.put("cJ", 10);
+        carValue.put("cQ", 11);
+        carValue.put("cK", 12);
+        carValue.put("dA", 0);
+        carValue.put("d1", 1);
+        carValue.put("d2", 2);
+        carValue.put("d3", 3);
+        carValue.put("d4", 4);
+        carValue.put("d5", 5);
+        carValue.put("d6", 6);
+        carValue.put("d7", 7);
+        carValue.put("d8", 8);
+        carValue.put("d9", 9);
+        carValue.put("dQ", 10);
+        carValue.put("dK", 11);
+        carValue.put("dJ", 12);
+        carValue.put("hA", 0);
+        carValue.put("h1", 1);
+        carValue.put("h2", 2);
+        carValue.put("h3", 3);
+        carValue.put("h4", 4);
+        carValue.put("h5", 5);
+        carValue.put("h6", 6);
+        carValue.put("h7", 7);
+        carValue.put("h8", 8);
+        carValue.put("h9", 9);
+        carValue.put("hQ", 10);
+        carValue.put("hK", 11);
+        carValue.put("hJ", 12);
+        carValue.put("sA", 0);
+        carValue.put("s1", 1);
+        carValue.put("s2", 2);
+        carValue.put("s3", 3);
+        carValue.put("s4", 4);
+        carValue.put("s5", 5);
+        carValue.put("s6", 6);
+        carValue.put("s7", 7);
+        carValue.put("s8", 8);
+        carValue.put("s9", 9);
+        carValue.put("sQ", 10);
+        carValue.put("sK", 11);
+        carValue.put("sJ", 12);
+        return carValue.get(n);
+    }
+
 
     public void shuffleDeck() {
 

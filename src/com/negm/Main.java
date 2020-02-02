@@ -50,10 +50,9 @@ public class Main {
 
 
 
-        PointValue v = new PointValue();
-        //System.out.println(v.retVal("cA"));
         OrederdStack n = new OrederdStack();
         n.shuffleDeck();
+        System.out.println(n.getCardValue("c6"));
         do {
 
             System.out.println("Pile   C : " + pileC);
