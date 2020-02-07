@@ -34,27 +34,27 @@ public class OrederdStack {
     }
 
     public void push(String cardName, String colTo) {
-        if (colTo=="h" || colTo =="c"|| colTo =="s"|| colTo =="d"){
+        /*if (colTo=="h" || colTo =="c"|| colTo =="s"|| colTo =="d"){*/
             if (getCardValue(getTopCard(colTo)) == getCardValue(cardName) - 1) {
                 pushTo(colTo, cardName);
             } else
                 System.out.println("error at pilePush");
-        }
-        else {
+        //}
+        /*else {
             if (getCardValue(getTopCard(colTo)) == getCardValue(cardName) + 1) {
                 pushTo(colTo, cardName);
             } else
                 System.out.println("error at colPush");
-        }
+        } */
     }
 
     public void moveTo(String colFrom, String cardName, String colTo) {
         if (colTo=="h" || colTo =="c"|| colTo =="s"|| colTo =="d"){
             if (cardName.compareTo(getTopCard(colFrom)) == 0) {
-               pilePush(cardName,colTo);
+                pilePush(cardName,colTo);
                 popFrom(colFrom);
             } else
-                System.out.println("error3" + " " + cardName + " : " + getTopCard(colFrom));
+                System.out.println("error MoveTo pile" + " " + cardName + " : " + getTopCard(colFrom));
         }
         else if(colFrom=="h" || colFrom =="c"|| colFrom =="s"|| colFrom =="d"){
             System.out.println("Illegal move at moveTo");
@@ -64,12 +64,12 @@ public class OrederdStack {
                 push(cardName, colTo);
                 popFrom(colFrom);
             } else
-                System.out.println("error3" + " " + cardName + " : " + getTopCard(colFrom));
+                System.out.println("error moveTo column" + " " + cardName + " : " + getTopCard(colFrom));
         }
     }
     public boolean compare(String colFrom, String cardName){
         if (getTopCard(colFrom) == cardName) {
-           return true;
+            return true;
         }
         else
             return false;
@@ -175,19 +175,19 @@ public class OrederdStack {
                 case "8":
                     return column8.peek();
                 case "c":
-                    if(pileC.empty())
-                    return "";
+                    if(pileC.isEmpty())
+                        return "";
                     else return pileC.peek();
-               case "d":
-                   if(pileD.empty())
-                       return "0";
-                   else return pileD.peek();
+                case "d":
+                    if(pileD.isEmpty())
+                        return "0";
+                    else return pileD.peek();
                 case "h":
-                    if(pileH.empty())
+                    if(pileH.isEmpty())
                         return "0";
                     else return pileH.peek();
                 case "s":
-                    if(pileS.empty())
+                    if(pileS.isEmpty())
                         return "0";
                     else return pileS.peek();
                 default:
@@ -253,22 +253,23 @@ public class OrederdStack {
         carValue.put("sJ", 11);
         carValue.put("sQ", 12);
         carValue.put("sK", 13);
+        carValue.put(".", 0);
         return carValue.get(n);
     }
     public void pilePush(String cardName, String colTo){
-        if((pileC.empty() && cardName == "cA") || (cardName.matches(".*c*.") && (getCardValue(getTopCard(colTo)) == getCardValue(cardName) + 1)) ){
+        if((pileC.empty() && cardName == "cA") || (cardName.matches(".*c*.") && (1 == getCardValue(cardName) + 1)) ){
             pileC.push(cardName);
         }
         else if
-          ((pileH.empty() && cardName == "hA") || (cardName.matches(".*h*.") && (getCardValue(getTopCard(colTo)) == getCardValue(cardName) + 1)) ){
-             pileH.push(cardName);
+        ((pileH.empty() && cardName == "hA") || (cardName.matches(".*h*.") && (1 == getCardValue(cardName) + 1)) ){
+            pileH.push(cardName);
         }
         else if
-        ((pileS.empty() && cardName == "sA") || (cardName.matches(".*s*.") && (getCardValue(getTopCard(colTo)) == getCardValue(cardName) + 1)) ){
+        ((pileS.empty() && cardName == "sA") || (cardName.matches(".*s*.") && (1 == getCardValue(cardName) + 1)) ){
             pileS.push(cardName);
         }
         else if
-        ((pileD.empty() && cardName == "dA") || (cardName.matches(".*d*.") && (getCardValue(getTopCard(colTo)) == getCardValue(cardName) + 1)) ){
+        ((pileD.empty() && cardName == "dA") || (cardName.matches(".*d*.") && (1 == getCardValue(cardName) + 1)) ){
             pileD.push(cardName);
         }
 

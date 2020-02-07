@@ -53,12 +53,16 @@ public class Main {
         OrederdStack n = new OrederdStack();
         n.shuffleDeck();
         System.out.println(n.getCardValue("c6"));
-        do {
+        n.pileC.push(".");
+        n.pileD.push(".");
+        n.pileS.push(".");
+        n.pileH.push(".");
 
-            System.out.println("Pile   C : " + pileC);
-            System.out.println("Pile   D : " + pileD);
-            System.out.println("Pile   H : " + pileH);
-            System.out.println("Pile   S : " + pileS);
+        do {
+            System.out.println("Pile   C : " + n.pileC);
+            System.out.println("Pile   D : " + n.pileD);
+            System.out.println("Pile   H : " + n.pileH);
+            System.out.println("Pile   S : " + n.pileS);
             System.out.println("Column 1 : " + n.column1);
             System.out.println("Column 2 : " + n.column2);
             System.out.println("Column 3 : " + n.column3);
