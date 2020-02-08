@@ -58,6 +58,10 @@ public class Main {
         n.pileS.push(".");
         n.pileH.push(".");
 
+        n.column9.push("d2");
+        n.column9.push("c2");
+        n.column9.push("h2");
+        n.column9.push("s2");
         do {
             System.out.println("Pile   C : " + n.pileC);
             System.out.println("Pile   D : " + n.pileD);

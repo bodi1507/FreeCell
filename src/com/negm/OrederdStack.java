@@ -23,6 +23,7 @@ public class OrederdStack {
     public Stack<String> column7 = new Stack<String>();
     public Stack<String> column8 = new Stack<String>();
     public Stack<String> column9 = new Stack<String>();
+
     public GenerateColSize size = new GenerateColSize();
     public Random rd = new Random();
 
@@ -34,30 +35,30 @@ public class OrederdStack {
     }
 
     public void push(String cardName, String colTo) {
-        /*if (colTo=="h" || colTo =="c"|| colTo =="s"|| colTo =="d"){*/
-            if (getCardValue(getTopCard(colTo)) == getCardValue(cardName) - 1) {
-                pushTo(colTo, cardName);
-            } else
-                System.out.println("error at pilePush");
-        //}
-        /*else {
+        System.out.println(colTo);
+        if(colTo.equals("1") || colTo.equals("2")|| colTo.equals("3") || colTo.equals("4") ||colTo.equals("5") || colTo.equals("6") || colTo.equals("7") || colTo.equals("8") || colTo.equals("9")){
             if (getCardValue(getTopCard(colTo)) == getCardValue(cardName) + 1) {
                 pushTo(colTo, cardName);
             } else
                 System.out.println("error at colPush");
-        } */
+        }
+        else {
+            if (getCardValue(getTopCard(colTo)) == getCardValue(cardName) - 1) {
+                pushTo(colTo, cardName);
+            } else
+                System.out.println("error at pilePush");
+        }
+
     }
 
     public void moveTo(String colFrom, String cardName, String colTo) {
-        if (colTo=="h" || colTo =="c"|| colTo =="s"|| colTo =="d"){
+        if (colTo.equals("h") || colTo.equals("c")|| colTo.equals("s")|| colTo.equals("d")){
             if (cardName.compareTo(getTopCard(colFrom)) == 0) {
-                pilePush(cardName,colTo);
-                popFrom(colFrom);
+                System.out.println("moveTo-pile");
+                pilePush(cardName,colTo,colFrom);
+
             } else
                 System.out.println("error MoveTo pile" + " " + cardName + " : " + getTopCard(colFrom));
-        }
-        else if(colFrom=="h" || colFrom =="c"|| colFrom =="s"|| colFrom =="d"){
-            System.out.println("Illegal move at moveTo");
         }
         else {
             if (cardName.compareTo(getTopCard(colFrom)) == 0) {
@@ -174,6 +175,8 @@ public class OrederdStack {
                     return column7.peek();
                 case "8":
                     return column8.peek();
+                case "9":
+                    return column9.peek();
                 case "c":
                     if(pileC.isEmpty())
                         return "";
@@ -256,21 +259,30 @@ public class OrederdStack {
         carValue.put(".", 0);
         return carValue.get(n);
     }
-    public void pilePush(String cardName, String colTo){
-        if((pileC.empty() && cardName == "cA") || (cardName.matches(".*c*.") && (1 == getCardValue(cardName) + 1)) ){
+    public void pilePush(String cardName, String colTo,String colFrom  ){
+        System.out.println("pilePush fun6 ");
+        if((cardName.equals("cA")) || (cardName.matches("c") && (getCardValue(getTopCard(colTo)) == getCardValue(cardName) - 1)) ){
             pileC.push(cardName);
+            popFrom(colFrom);
+            System.out.println("pile Push c");
         }
         else if
-        ((pileH.empty() && cardName == "hA") || (cardName.matches(".*h*.") && (1 == getCardValue(cardName) + 1)) ){
+        ((cardName.equals("hA")) || ( cardName.matches("h") && (getCardValue(getTopCard(colTo)) == getCardValue(cardName) - 1)) ){
             pileH.push(cardName);
+            popFrom(colFrom);
         }
         else if
-        ((pileS.empty() && cardName == "sA") || (cardName.matches(".*s*.") && (1 == getCardValue(cardName) + 1)) ){
+        ((cardName.equals("sA")) || (cardName.matches("s") &&  (getCardValue(getTopCard(colTo)) == getCardValue(cardName) - 1)) ){
             pileS.push(cardName);
+            popFrom(colFrom);
         }
         else if
-        ((pileD.empty() && cardName == "dA") || (cardName.matches(".*d*.") && (1 == getCardValue(cardName) + 1)) ){
+        ((cardName.equals("dA")) ||(cardName.matches("d") &&  (getCardValue(getTopCard(colTo)) == getCardValue(cardName) - 1) )){
             pileD.push(cardName);
+            popFrom(colFrom);
+        }
+        else{
+            System.out.println("nothing is moved pilepush");
         }
 
     }
