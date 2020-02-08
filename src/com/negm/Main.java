@@ -52,46 +52,42 @@ public class Main {
 
         OrederdStack n = new OrederdStack();
         n.shuffleDeck();
-        System.out.println(n.getCardValue("c6"));
-        n.pileC.push(".");
+        /*n.pileC.push(".");
         n.pileD.push(".");
         n.pileS.push(".");
-        n.pileH.push(".");
+        n.pileH.push(".");  */
 
-        n.column9.push("d2");
+        /*n.column9.push("d2");
         n.column9.push("c2");
         n.column9.push("h2");
         n.column9.push("s2");
+        n.column9.push("sA"); */
+
         do {
-            System.out.println("Pile   C : " + n.pileC);
-            System.out.println("Pile   D : " + n.pileD);
-            System.out.println("Pile   H : " + n.pileH);
-            System.out.println("Pile   S : " + n.pileS);
-            System.out.println("Column 1 : " + n.column1);
-            System.out.println("Column 2 : " + n.column2);
-            System.out.println("Column 3 : " + n.column3);
-            System.out.println("Column 4 : " + n.column4);
-            System.out.println("Column 5 : " + n.column5);
-            System.out.println("Column 6 : " + n.column6);
-            System.out.println("Column 7 : " + n.column7);
-            System.out.println("Column 8 : " + n.column8);
-            System.out.println("Column 9 : " + n.column9);
-
-            System.out.println(n.getTopCard("c"));
-
+            if((n.column1.isEmpty() && n.column2.isEmpty()&& n.column3.isEmpty()&& n.column4.isEmpty()&& n.column5.isEmpty()&& n.column6.isEmpty()&& n.column7.isEmpty()&& n.column8.isEmpty()&& n.column9.isEmpty()))
+            {
+                n.PrintBoard();
+                System.out.println("Game is done");
+                break;
+            }
+            n.PrintBoard();
             System.out.print("Command->> ");
             Scanner input = new Scanner(System.in);
             colFrom = input.next();
-            cardName = input.next();
-            colTo = input.next();
-            n.moveTo(colFrom,cardName,colTo);
-           
-
-            // Need to put these if conditions in a class
-
-            //if condition to remove the element selected by the user from the original array
+            if(colFrom.equals("r")){
+                String colRot = input.next();
+                n.colRotation(colRot);
+            }
+            else {
+                cardName = input.next();
+                colTo = input.next();
+                n.moveTo(colFrom, cardName, colTo);
+            }
             cls();
-        } while (!cardName.equals("x"));
+        } while (!colFrom.equals("x"));
+        {
+            System.out.println("done...");
+        }
 
     }
 }

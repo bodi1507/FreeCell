@@ -1,6 +1,7 @@
 package com.negm;
 
 import java.util.*;
+import java.util.regex.Pattern;
 
 public class OrederdStack {
     public ArrayList<String> deck = new ArrayList<String>(
@@ -36,12 +37,16 @@ public class OrederdStack {
 
     public void push(String cardName, String colTo) {
         System.out.println(colTo);
+        if(column1.isEmpty() || column2.isEmpty()|| column3.isEmpty() || column4.isEmpty() || column5.isEmpty() || column6.isEmpty() || column7.isEmpty() || column8.isEmpty() || column9.isEmpty()){
+         pushTo(colTo,cardName);
+        }
         if(colTo.equals("1") || colTo.equals("2")|| colTo.equals("3") || colTo.equals("4") ||colTo.equals("5") || colTo.equals("6") || colTo.equals("7") || colTo.equals("8") || colTo.equals("9")){
             if (getCardValue(getTopCard(colTo)) == getCardValue(cardName) + 1) {
                 pushTo(colTo, cardName);
             } else
                 System.out.println("error at colPush");
         }
+
         else {
             if (getCardValue(getTopCard(colTo)) == getCardValue(cardName) - 1) {
                 pushTo(colTo, cardName);
@@ -176,6 +181,9 @@ public class OrederdStack {
                 case "8":
                     return column8.peek();
                 case "9":
+                    if(column9.isEmpty())
+                    {return "0";}
+                    else
                     return column9.peek();
                 case "c":
                     if(pileC.isEmpty())
@@ -256,34 +264,37 @@ public class OrederdStack {
         carValue.put("sJ", 11);
         carValue.put("sQ", 12);
         carValue.put("sK", 13);
-        carValue.put(".", 0);
+        carValue.put("0", 0);
         return carValue.get(n);
     }
     public void pilePush(String cardName, String colTo,String colFrom  ){
         System.out.println("pilePush fun6 ");
-        if((cardName.equals("cA")) || (cardName.matches("c") && (getCardValue(getTopCard(colTo)) == getCardValue(cardName) - 1)) ){
+        Character temp = cardName.charAt(0);
+        if((cardName.equals("cA")) || ( temp == 'c' && (getCardValue(getTopCard(colTo)) == getCardValue(cardName) - 1)) ){
             pileC.push(cardName);
             popFrom(colFrom);
             System.out.println("pile Push c");
         }
         else if
-        ((cardName.equals("hA")) || ( cardName.matches("h") && (getCardValue(getTopCard(colTo)) == getCardValue(cardName) - 1)) ){
+        ((cardName.equals("hA")) || ( temp == 'h' && (getCardValue(getTopCard(colTo)) == getCardValue(cardName) - 1)) ){
             pileH.push(cardName);
             popFrom(colFrom);
         }
         else if
-        ((cardName.equals("sA")) || (cardName.matches("s") &&  (getCardValue(getTopCard(colTo)) == getCardValue(cardName) - 1)) ){
+        ((cardName.equals("sA")) || (temp == 's' &&  (getCardValue(getTopCard(colTo)) == getCardValue(cardName) - 1)) ){
             pileS.push(cardName);
             popFrom(colFrom);
         }
         else if
-        ((cardName.equals("dA")) ||(cardName.matches("d") &&  (getCardValue(getTopCard(colTo)) == getCardValue(cardName) - 1) )){
+        ((cardName.equals("dA")) ||(temp == 'd' &&  (getCardValue(getTopCard(colTo)) == getCardValue(cardName) - 1) )){
             pileD.push(cardName);
             popFrom(colFrom);
         }
         else{
+            System.out.println(temp + " : " + cardName);
             System.out.println("nothing is moved pilepush");
         }
+
 
     }
 
@@ -354,5 +365,90 @@ public class OrederdStack {
         }
         //column9 is just an extra column no data need to be inserted in it
 
+    }
+        public void colRotation(String colRot){
+            switch (colRot) {
+                case "1":
+                    if(column1.isEmpty()){
+                        System.out.println("The column is empty");
+                    }
+                    else
+                    column1.add(0, column1.remove(column1.size()-1));
+                    break;
+                case "2":
+                    if(column2.isEmpty()){
+                        System.out.println("The column is empty");
+                    }
+                    else
+                    column2.add(0, column2.remove(column2.size()-1));
+                    break;
+                case "3":
+                    if(column3.isEmpty()){
+                        System.out.println("The column is empty");
+                    }
+                    else
+                    column3.add(0, column3.remove(column3.size()-1));
+                    break;
+                case "4":
+                    if(column4.isEmpty()){
+                        System.out.println("The column is empty");
+                    }
+                    else
+                    column4.add(0, column4.remove(column4.size()-1));
+                    break;
+                case "5":
+                    if(column5.isEmpty()){
+                        System.out.println("The column is empty");
+                    }
+                    else
+                    column5.add(0, column5.remove(column5.size()-1));
+                    break;
+                case "6":
+                    if(column6.isEmpty()){
+                        System.out.println("The column is empty");
+                    }
+                    else
+                        column6.add(0, column6.remove(column6.size()-1));
+                    break;
+                case "7":
+                    if(column7.isEmpty()){
+                        System.out.println("The column is empty");
+                    }
+                    else
+                        column7.add(0, column7.remove(column7.size()-1));
+                    break;
+                case "8":
+                    if(column8.isEmpty()){
+                        System.out.println("The column is empty");
+                    }
+                    else
+                    column8.add(0, column8.remove(column8.size()-1));
+                    break;
+                case "9":
+                    if(column9.isEmpty()){
+                        System.out.println("The column is empty");
+                    }
+                    else 
+                    column9.add(0, column9.remove(column9.size()-1));
+                    break;
+                default:
+                    System.out.println("error at colRot method");
+            }
+        }
+
+    public void PrintBoard() {
+        System.out.println("Pile   C : " + pileC +
+        "\nPile   D : " + pileD +
+        "\nPile   H : " + pileH +
+        "\nPile   S : " + pileS +
+        "\nColumn 1 : " + column1 +
+        "\nColumn 2 : " + column2 +
+        "\nColumn 3 : " + column3 +
+        "\nColumn 4 : " + column4 +
+        "\nColumn 5 : " + column5 +
+        "\nColumn 6 : " + column6 +
+        "\nColumn 7 : " + column7 +
+        "\nColumn 8 : " + column8 +
+        "\nColumn 9 : " + column9);
     }
 }
